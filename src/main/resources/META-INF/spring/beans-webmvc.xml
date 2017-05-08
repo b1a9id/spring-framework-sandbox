@@ -20,12 +20,31 @@
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/views/" />
 
 	<!-- ViewResolverの設定 -->
-	<mvc:view-resolvers order="2">
-		<mvc:jsp
-				view-class="org.springframework.web.servlet.view.JstlView"
-				prefix="/WEB-INF/views/"
-				suffix=".jsp"
-				view-names="jsp/*"/>
-	</mvc:view-resolvers>
+	<!-- Thymeleaf -->
+	<beans>
+		<bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver" >
+			<property name="prefix" value="/WEB-INF/views/" />
+			<property name="suffix" value=".html" />
+			<property name="characterEncoding" value="UTF-8" />
+		</bean>
+		<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+			<property name="templateResolver" ref="templateResolver" />
+		</bean>
+		<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+			<property name="templateEngine" ref="templateEngine" />
+			<property name="characterEncoding" value="UTF-8" />
+			<property name="viewNames" value="thymeleaf/*" />
+			<property name="order" value="1" />
+		</bean>
+	</beans>
+	<!-- JSP -->
+	<beans>
+		<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/WEB-INF/views/" />
+			<property name="suffix" value=".jsp" />
+			<property name="viewNames" value="jsp/*" />
+			<property name="order" value="2" />
+		</bean>
+	</beans>
 
 </beans>

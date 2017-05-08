@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/hello")
 public class WelcomeController {
 
-	@GetMapping
-	public String hello() {
+	@GetMapping("/jsp")
+	public String helloJsp() {
 		return "jsp/hello/index";
+	}
+
+	@GetMapping("/thymeleaf")
+	public String helloThymeleaf() {
+		return "thymeleaf/hello/index";
 	}
 }

@@ -3,7 +3,7 @@
 <head>
 	<title>Title</title>
 </head>
-<body>
-	<p>テストやねん</p>
-</body>
+	<body>
+		<p>JSPやねん</p>
+	</body>
 </html>
